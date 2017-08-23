@@ -5,21 +5,52 @@
     <link href="css/styles.css" rel="stylesheet" type="text/css">
     <script src="js/jquery-3.2.1.js"></script>
     <script src="js/scripts.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Chewy" rel="stylesheet">
     <title>Widdle Piggy Dice</title>
   </head>
   <body>
     <div class="container">
       <div class="row">
-        <div class="col-md-6 playerOne">
+        <div class ="col-md-4">
+          <div class ="panel">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title playerOneName"></h3>
+              </div>
+              <div class="panel-body">
+                <ul id ="playerOneDisplayRoll"></ul>
+                <h3>Score:</h3>
+                <p id ="playerOneCurrentScore"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 playerOne">
           <h1>Player1</h1>
           <p><span class = "btn btn-success rollOne">Roll</span></p>
           <p><span class = "btn btn-danger holdOne">Hold</span></p>
+          <ul></ul>
         </div>
-        <div class="col-md-6 playerTwo">
+        <div class="col-md-4 playerTwo">
           <h1>Player2</h1>
           <p><span class = "btn btn-success rollTwo">Roll</span></p>
           <p><span class = "btn btn-danger holdTwo">Hold</span></p>
         </div>
+        <div class ="col-md-4">
+          <div class ="panel">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title playerTwoName"></h3>
+              </div>
+              <div class="panel-body">
+                <ul id ="playerTwoDisplayRoll"></ul>
+                <h3>Score: </h3>
+                <p id ="playerTwoCurrentScore"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </body>
