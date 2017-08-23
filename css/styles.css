@@ -3,4 +3,13 @@
 }
 body{
   font-family:'Chewy', cursive;
-};
+
+}
+
+ .center{
+  text-align: center;
+}
+
+#playerOneDisplayRoll, #playerTwoDisplayRoll{
+  list-style: none;
+}

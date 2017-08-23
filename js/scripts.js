@@ -37,6 +37,9 @@ player1 = new Player("Noah", [], 0, 0);
 player2 = new Player("Aaron", [], 0, 0);
 
 $(document).ready(function(){
+  $(".playerTwoName").text(player2.name);
+  $(".playerOneName").text(player1.name);
+
   $(".rollOne").click(function(){
     var roll = player1.roll();
     var current = player1.currentScore;
@@ -46,7 +49,6 @@ $(document).ready(function(){
       $(".playerTwo").toggle();
       $(".playerOne").toggle();
     } else {
-    $(".playerOneName").text(player1.name);
     $("#playerOneDisplayRoll").append("<li>Your Roll: " + roll +  " | Current Score: " + (current + player1.turnScore) + "</li>");
     }
   })
@@ -68,7 +70,6 @@ $(document).ready(function(){
       $(".playerTwo").toggle();
       $(".playerOne").toggle();
     } else {
-    $(".playerTwoName").text(player2.name);
     $("#playerTwoDisplayRoll").append("<li>Your Roll: " + roll +  " | Current Score: " + (current + player2.turnScore) + "</li>");
     }
   })
