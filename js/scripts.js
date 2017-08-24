@@ -24,7 +24,7 @@ Player.prototype.score = function(score){
 }
 Player.prototype.winner = function(score){
   var current = this.currentScore;
-  if(current + score >= 100){
+  if(current + score >= 20){
     player1.turnScore = 0;
     player1.currentScore = 0;
     player2.turnScore = 0;
@@ -92,7 +92,7 @@ $(document).ready(function(){
     // $("#playerTwoCurrentScore").text(player2.currentScore);
 
     if(roll === 0){
-    //  $("#playerOneDisplayRoll").empty();
+      $("#playerOneDisplayRoll").empty();
       if(player2.name==="COMPUTER-TRON") {
       $(".computerTron").toggle();
       $(".playerOne").toggle();
@@ -115,7 +115,6 @@ $(document).ready(function(){
       $(".playerOne").toggle();
       $(".computerTron").toggle();
       $("#playerOneCurrentScore").text(player1.currentScore);
-      $("#playerOneDisplayRoll").empty();
 
       compuTron();
       $(".holdComp").trigger('click');
@@ -124,6 +123,7 @@ $(document).ready(function(){
       $(".playerTwo").toggle();
       $("#playerOneCurrentScore").text(player1.currentScore);
       $("#playerOneDisplayRoll").empty();
+
     }
   })
 
@@ -131,11 +131,11 @@ $(document).ready(function(){
     var roll = player2.roll();
     var current = player2.currentScore;
     player2.winner(roll);
-    // $("#playerTwoCurrentScore").text(player2.currentScore);
-    // $("#playerOneCurrentScore").text(player1.currentScore);
+    $("#playerTwoCurrentScore").text(player2.currentScore);
 
     if(roll === 0){
       $("#playerTwoDisplayRoll").empty();
+
       $(".playerTwo").toggle();
       $(".playerOne").toggle();
     } else {
@@ -149,6 +149,7 @@ $(document).ready(function(){
     $(".playerTwo").toggle();
     $("#playerTwoCurrentScore").text(player2.currentScore);
     $("#playerTwoDisplayRoll").empty();
+
   })
 
 
@@ -158,7 +159,6 @@ $(document).ready(function(){
     $(".playerOne").toggle();
     $(".computerTron").toggle();
     $("#playerTwoCurrentScore").text(player2.currentScore);
-    $("#playerTwoDisplayRoll").empty();
   });
 })
 
