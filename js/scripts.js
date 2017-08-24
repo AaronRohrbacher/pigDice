@@ -17,7 +17,6 @@ Player.prototype.roll = function(){
   }
 }
 
-
 Player.prototype.score = function(score){
   this.currentScore += score;
   this.turnScore = 0;
@@ -32,13 +31,37 @@ Player.prototype.winner = function(score){
   alert(this.name + " wins! With a score of: " + (current + score));
   }
 }
-
-player1 = new Player("Noah", [], 0, 0);
-player2 = new Player("Aaron", [], 0, 0);
+player1 = new Player("", [], 0, 0);
+player2 = new Player("", [], 0, 0);
 
 $(document).ready(function(){
-  $(".playerTwoName").text(player2.name);
-  $(".playerOneName").text(player1.name);
+
+  $("#radios").submit(function(event){
+    event.preventDefault();
+    var choice = $("input:radio[name=playerSelect]:checked").val();
+    if(choice === "twoPlayer"){
+      $(".userInput").show();
+    } else{
+        player1.name = "you"
+        player2.name = "COMPUTER-TRON"
+        $(".playerTwoName").text(player2.name);
+        $(".playerOneName").text(player1.name);
+
+        $(".game").show();
+    }
+  });
+
+  $(".userInput").submit(function(event){
+    event.preventDefault();
+    var nameOne = $("#name1").val();
+    var nameTwo = $("#name2").val();
+    player1.name = nameOne;
+    player2.name = nameTwo;
+    $(".game").show()
+    $(".playerTwoName").text(player2.name);
+    $(".playerOneName").text(player1.name);
+
+  })
 
   $(".rollOne").click(function(){
     var roll = player1.roll();
@@ -46,21 +69,33 @@ $(document).ready(function(){
     player1.winner(roll);
     if(roll === 0){
       $("#playerOneDisplayRoll").empty();
-      $(".playerTwo").toggle();
+      if(player2.name==="COMPUTER-TRON") {
+      $(".computerTron").toggle();
       $(".playerOne").toggle();
+    }else {
+      $(".playerOne").toggle();
+      $(".player2").toggle();
+    }
     } else {
     $("#playerOneDisplayRoll").append("<li>Your Roll: " + roll +  " | Current Score: " + (current + player1.turnScore) + "</li>");
     }
   })
+
   $(".holdOne").click(function() {
     player1.score(player1.turnScore);
-    $(".playerOne").toggle();
-    $(".playerTwo").toggle();
-    $("#playerOneCurrentScore").text(player1.currentScore);
-    $("#playerOneDisplayRoll").empty();
+    if(player2.name==="COMPUTER-TRON") {
+      $(".playerOne").toggle();
+      $(".computerTron").toggle();
+      $("#playerOneCurrentScore").text(player1.currentScore);
 
-
+    } else {
+      $(".playerOne").toggle();
+      $(".playerTwo").toggle();
+      $("#playerOneCurrentScore").text(player1.currentScore);
+      $("#playerOneDisplayRoll").empty();
+    }
   })
+
   $(".rollTwo").click(function(){
     var roll = player2.roll();
     var current = player2.currentScore;
@@ -73,15 +108,35 @@ $(document).ready(function(){
     $("#playerTwoDisplayRoll").append("<li>Your Roll: " + roll +  " | Current Score: " + (current + player2.turnScore) + "</li>");
     }
   })
+
   $(".holdTwo").click(function() {
     player2.score(player2.turnScore);
     $(".playerOne").toggle();
     $(".playerTwo").toggle();
     $("#playerTwoCurrentScore").text(player2.currentScore);
     $("#playerTwoDisplayRoll").empty();
-
-
   })
+
+  $(".rollComp").click(function(){
+    var roll = player2.roll();
+    var current = player2.currentScore;
+    player2.winner(roll);
+    if(roll === 0){
+      $("#playerTwoDisplayRoll").empty();
+      $(".computerTron").toggle();
+      $(".playerOne").toggle();
+    } else {
+    $("#playerTwoDisplayRoll").append("<li>Your Roll: " + roll +  " | Current Score: " + (current + player2.turnScore) + "</li>");
+    }
+  })
+
+  $(".holdComp").click(function() {
+    player2.score(player2.turnScore);
+    $(".playerOne").toggle();
+    $(".computerTron").toggle();
+    $("#playerTwoCurrentScore").text(player2.currentScore);
+    $("#playerTwoDisplayRoll").empty();
+  });
 })
 
 

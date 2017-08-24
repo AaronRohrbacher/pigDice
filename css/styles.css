@@ -1,6 +1,9 @@
 .playerTwo {
   display:none;
 }
+.computerTron {
+  display:none;
+}
 body{
   font-family:'Chewy', cursive;
 
@@ -12,4 +15,11 @@ body{
 
 #playerOneDisplayRoll, #playerTwoDisplayRoll{
   list-style: none;
+}
+
+.userInput{
+  display: none;
+}
+.game{
+  display: none;
 }
