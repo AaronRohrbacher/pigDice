@@ -35,7 +35,23 @@ Player.prototype.winner = function(score){
 player1 = new Player("", [], 0, 0);
 player2 = new Player("", [], 0, 0);
 
+
 $(document).ready(function(){
+  function compuTron() {
+    for (i=0; player2.turnScore < 10; i++) {
+      var roll = player2.roll();
+      var current = player2.currentScore;
+      player2.winner(roll);
+      console.log("computer " + roll)
+      if(roll === 0){
+        // $("#playerTwoDisplayRoll").empty();
+        $(".computerTron").toggle();
+        $(".playerOne").toggle();
+      } else {
+      $("#playerTwoDisplayRoll").append("<li>Your Roll: " + roll +  " | Current Score: " + (current + player2.turnScore) + "</li>");
+      }
+    }
+  }
 
   $("#radios").submit(function(event){
     event.preventDefault();
@@ -47,7 +63,6 @@ $(document).ready(function(){
         player2.name = "COMPUTER-TRON"
         $(".playerTwoName").text(player2.name);
         $(".playerOneName").text(player1.name);
-
         $(".game").show();
     }
   });
@@ -73,9 +88,11 @@ $(document).ready(function(){
       if(player2.name==="COMPUTER-TRON") {
       $(".computerTron").toggle();
       $(".playerOne").toggle();
+      compuTron();
+      $(".holdComp").trigger('click');
     }else {
       $(".playerOne").toggle();
-      $(".player2").toggle();
+      $(".playerTwo").toggle();
     }
     } else {
     $("#playerOneDisplayRoll").append("<li>Your Roll: " + roll +  " | Current Score: " + (current + player1.turnScore) + "</li>");
@@ -88,6 +105,10 @@ $(document).ready(function(){
       $(".playerOne").toggle();
       $(".computerTron").toggle();
       $("#playerOneCurrentScore").text(player1.currentScore);
+      $("#playerOneDisplayRoll").empty();
+
+      compuTron();
+      $(".holdComp").trigger('click');
 
     } else {
       $(".playerOne").toggle();
@@ -119,18 +140,6 @@ $(document).ready(function(){
   })
 
 
-    for (i=0; player2.turnScore < 10; i++) {
-    var roll = player2.roll();
-    var current = player2.currentScore;
-    player2.winner(roll);
-    if(roll === 0){
-      $("#playerTwoDisplayRoll").empty();
-      $(".computerTron").toggle();
-      $(".playerOne").toggle();
-    } else {
-    $("#playerTwoDisplayRoll").append("<li>Your Roll: " + roll +  " | Current Score: " + (current + player2.turnScore) + "</li>");
-    }
-  }
 
   $(".holdComp").click(function() {
     player2.score(player2.turnScore);
