@@ -8,7 +8,7 @@ function Player(name, rollArr, turnScore, currentScore) {
 Player.prototype.roll = function(){
   var dice = Math.floor(Math.random() * (7-1)) +1;
   if (dice === 1) {
-    alert("You rolled a one, fucker!");
+    alert("You rolled a one, beautiful!");
     this.score(0);
     return 0;
   } else {
@@ -38,17 +38,22 @@ player2 = new Player("", [], 0, 0);
 
 $(document).ready(function(){
   function compuTron() {
-    for (i=0; player2.turnScore < 10; i++) {
+    for (i=0; player2.turnScore < 10 && roll !== 0; i++) {
       var roll = player2.roll();
       var current = player2.currentScore;
       player2.winner(roll);
+      // $("#playerTwoCurrentScore").text(player2.currentScore);
+      // $("#playerOneCurrentScore").text(player1.currentScore);
+
       console.log("computer " + roll)
       if(roll === 0){
         // $("#playerTwoDisplayRoll").empty();
         $(".computerTron").toggle();
         $(".playerOne").toggle();
+        $(".holdComp").trigger('click');
       } else {
       $("#playerTwoDisplayRoll").append("<li>Your Roll: " + roll +  " | Current Score: " + (current + player2.turnScore) + "</li>");
+
       }
     }
   }
@@ -83,18 +88,23 @@ $(document).ready(function(){
     var roll = player1.roll();
     var current = player1.currentScore;
     player1.winner(roll);
+    // $("#playerOneCurrentScore").text(player1.currentScore);
+    // $("#playerTwoCurrentScore").text(player2.currentScore);
+
     if(roll === 0){
-      $("#playerOneDisplayRoll").empty();
+    //  $("#playerOneDisplayRoll").empty();
       if(player2.name==="COMPUTER-TRON") {
       $(".computerTron").toggle();
       $(".playerOne").toggle();
       compuTron();
       $(".holdComp").trigger('click');
-    }else {
-      $(".playerOne").toggle();
-      $(".playerTwo").toggle();
+
+      }else {
+        $(".playerOne").toggle();
+        $(".playerTwo").toggle();
+      }
     }
-    } else {
+      else {
     $("#playerOneDisplayRoll").append("<li>Your Roll: " + roll +  " | Current Score: " + (current + player1.turnScore) + "</li>");
     }
   })
@@ -109,7 +119,6 @@ $(document).ready(function(){
 
       compuTron();
       $(".holdComp").trigger('click');
-
     } else {
       $(".playerOne").toggle();
       $(".playerTwo").toggle();
@@ -122,6 +131,9 @@ $(document).ready(function(){
     var roll = player2.roll();
     var current = player2.currentScore;
     player2.winner(roll);
+    // $("#playerTwoCurrentScore").text(player2.currentScore);
+    // $("#playerOneCurrentScore").text(player1.currentScore);
+
     if(roll === 0){
       $("#playerTwoDisplayRoll").empty();
       $(".playerTwo").toggle();
