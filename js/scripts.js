@@ -17,6 +17,7 @@ Player.prototype.roll = function(){
   }
 }
 
+
 Player.prototype.score = function(score){
   this.currentScore += score;
   this.turnScore = 0;
@@ -117,7 +118,8 @@ $(document).ready(function(){
     $("#playerTwoDisplayRoll").empty();
   })
 
-  $(".rollComp").click(function(){
+
+    for (i=0; player2.turnScore < 10; i++) {
     var roll = player2.roll();
     var current = player2.currentScore;
     player2.winner(roll);
@@ -128,7 +130,7 @@ $(document).ready(function(){
     } else {
     $("#playerTwoDisplayRoll").append("<li>Your Roll: " + roll +  " | Current Score: " + (current + player2.turnScore) + "</li>");
     }
-  })
+  }
 
   $(".holdComp").click(function() {
     player2.score(player2.turnScore);
